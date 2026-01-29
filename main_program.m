@@ -51,8 +51,9 @@ D=pdist2(Cities',Cities');
 
 
 disp(datetime('now'));       
-
-[solution, fval, exitflag, buildTime, solveTime, totalTime,raport]= milp_function(numCities, numVehicles, travelTimes_vis, travelTimes_vor, e, l, M, vehicleSpeed);
+alpha=250;
+beta=10;
+[solution, fval, exitflag, buildTime, solveTime, totalTime,raport]= milp_function(numCities, numVehicles, travelTimes_vis, travelTimes_vor, e, l, M, vehicleSpeed,alpha,beta);
 
 % --- Plot robot paths separately ---
 colors = lines(numVehicles);
@@ -189,3 +190,4 @@ for kv = 1:numVehicles
     end
     figr_ACO{kv}= fig_robot_ACO;
 end
+
