@@ -39,20 +39,22 @@ fig_combined = figure('Name', 'Combined Graphs (Environment + Vis + Vor)');
 copyobj(allchild(fig_env), fig_combined);
 hold on;
 
-% Add faint visibility graph (plotFlag = 0)
+% Add faint visibility graph (plotFlag = 0). This function only plots ,it
+% does not build
 [~, ~, ~] = construct_visibility_graph(Obstacles, Cities, fig_combined, 0);
 
 % Add faint Voronoi graph (plotFlag = 0)
 [~, ~, ~, ~] = GVD_construct(env_bounds, obstacles, Cities, fig_combined, 0);
-D=pdist2(Cities',Cities');
+
 
 %%
 % --- MILP call ---
 
 
 disp(datetime('now'));       
-alpha=250;
+alpha=200;
 beta=10;
+
 [solution, fval, exitflag, buildTime, solveTime, totalTime,raport]= milp_function(numCities, numVehicles, travelTimes_vis, travelTimes_vor, e, l, M, vehicleSpeed,alpha,beta);
 
 % --- Plot robot paths separately ---
@@ -178,7 +180,7 @@ for kv = 1:numVehicles
                     [i,j], Edge_to_path_vor, Edge_to_path_vis, ...
                     Nodes_vor, Nodes_vis, colors(kv,:), 0, vehicleSpeed);
             else
-                % modeUsed == 0 means arc unused – skip
+             
                 continue;
             end
 
@@ -190,4 +192,3 @@ for kv = 1:numVehicles
     end
     figr_ACO{kv}= fig_robot_ACO;
 end
-
