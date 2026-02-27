@@ -8,10 +8,9 @@ M             = 1000;
 env_bounds    = [0 200 0 200];
 
 
-% Depot has zero travel time to itself
 travelTimeRow = zeros(1, numCities);
 
-%  random but bounded travel times for cities 2..numCities
+
 travelTimeRow(2:end) = 5 + 10*rand(1, numCities-1);   % [5,15] seconds
 
 e = zeros(numCities,1);
@@ -26,3 +25,4 @@ e(1) = 0;      % depot
 l(1) = 1e6;    % no upper bound
 
 end
+
