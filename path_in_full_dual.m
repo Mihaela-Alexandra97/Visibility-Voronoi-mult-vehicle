@@ -16,7 +16,7 @@ function [path_indices, path_coord, path_cost, path_timing] = path_in_full_dual(
 path_coord = [];
 path_indices = [];
 
-% === CRITICAL FIX: Make sure we draw on the correct (current) figure ===
+
               % Keep existing content
  % Visibility: dashed, slightly thicker
         figure(gcf);           % Force MATLAB to target the figure that called us
@@ -37,11 +37,10 @@ path_indices = path;
 % Build coordinate matrix
 path_coord = nodes(:, path);  % 2 x length
 
-% --- Compute cost and timing ---
+
 path_cost = 0;
 path_timing = 0;
 
-% --- Plot segment by segment with arrows ---
 for seg = 1:(length(path)-1)
     i = path(seg);
     j = path(seg+1);
@@ -55,7 +54,6 @@ for seg = 1:(length(path)-1)
     path_cost = path_cost + segment_length;
     path_timing = path_timing + segment_length / vs;
     
-    % Plot arrow (quiver is perfect for direction)
     if ok == 1
        
         quiver(x_start, y_start, dx, dy, 0, ...
@@ -69,7 +67,7 @@ for seg = 1:(length(path)-1)
     end
 end
 
-% Optional: small pause so you can see animation (remove if not wanted)
  % pause(0.03);
 
 end
+
