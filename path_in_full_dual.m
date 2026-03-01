@@ -11,7 +11,7 @@ function [path_indices, path_coord, path_cost, path_timing] = path_in_full_dual(
 %   ok            - 1 = use Visibility, 0 = use Voronoi
 %   vs            - vehicle speed
 %
-% This version respects the current figure (gcf) — no more plotting on wrong windows!
+
 
 path_coord = [];
 path_indices = [];
@@ -19,9 +19,9 @@ path_indices = [];
 
               % Keep existing content
  % Visibility: dashed, slightly thicker
-        figure(gcf);           % Force MATLAB to target the figure that called us
+        figure(gcf);           
         hold on; 
-% --- Select appropriate path and coordinates ---
+
 if ok == 1
     % Visibility graph
     path = Edge_to_path2{path_red(1), path_red(2)};
@@ -70,4 +70,5 @@ end
  % pause(0.03);
 
 end
+
 
